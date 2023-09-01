@@ -1,15 +1,11 @@
 // Get Object Value From String Path
 
 function get(object, value) {
-  if (!value || !value.length === 0) {
-    return undefined;
-  }
+  if (!value || !value.length === 0) return undefined;
   const ignoredCases = ["[", ".", "]"];
   const valueArray = [];
   for (let i = 0; i < value.length; i++) {
-    if (!ignoredCases.includes(value[i])) {
-      valueArray.push(value[i]);
-    }
+    if (!ignoredCases.includes(value[i])) valueArray.push(value[i]);
   }
   const result = valueArray.reduce((obj, key) => obj[key], object);
   return result;
