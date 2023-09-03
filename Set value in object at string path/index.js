@@ -1,16 +1,28 @@
 // Set value in object at string path
 
+// Define a helper function to recursively set a value in an object at a given path.
 function helper(object, path, value) {
+  // Split the path into its components.
   const [currentKey, ...restKeys] = path;
+
+  // If there are more keys in the path, we need to continue traversing the object.
   if (restKeys.length > 0) {
+    // Check if the current key does not exist in the object.
     if (!object[currentKey]) {
+      // Determine if the next key should be treated as an array index or an object key.
       const isNumber = `${+restKeys[0]}` === restKeys[0];
+      // Initialize the current key as an empty array or object accordingly.
       object[currentKey] = isNumber ? [] : {};
     }
+
+    // Check if the current key's value is an object.
     if (typeof object[currentKey] === "object") {
+      // Determine if the next key should be treated as an array index or an object key.
       const isNumber = `${+restKeys[0]}` === restKeys[0];
+      // Recursively call the helper function with the current key's value.
       object[currentKey] = helper(isNumber ? [] : {}, restKeys, value);
     } else {
+      // If the current key's value is not an object, initialize it as an empty array or object.
       object[currentKey] = helper(
         object[currentKey] ? [] : {},
         restKeys,
@@ -18,9 +30,11 @@ function helper(object, path, value) {
       );
     }
   } else {
-    // If there are no keys after the currentKey
+    // If there are no keys after the currentKey, set the value at the current key.
     object[currentKey] = value;
   }
+
+  // Return the modified object.
   return object;
 }
 
