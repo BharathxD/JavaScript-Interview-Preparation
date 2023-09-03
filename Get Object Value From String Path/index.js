@@ -18,7 +18,6 @@ function get(object, value) {
   // Use the cleaned path components to traverse the object and retrieve the value.
   const result = valueArray.reduce((obj, key) => obj[key], object);
 
-  // Return the retrieved value.
   return result;
 }
 
@@ -31,9 +30,9 @@ const obj = {
   },
 };
 
-console.log(get(obj, "a.b.c"));
-console.log(get(obj, "a.b.c.0"));
-console.log(get(obj, "a.b.c[1]"));
-console.log(get(obj, ["a", "b", "c", "2"]));
-console.log(get(obj, "a.b.c[3]"));
-console.log(get(obj, "a.c"));
+console.log(get(obj, "a.b.c")); // Output: [1, 2, 3]
+console.log(get(obj, "a.b.c.0")); // Output: 1
+console.log(get(obj, "a.b.c[1]")); // Output: 2
+console.log(get(obj, ["a", "b", "c", "2"])); // Output: 3
+console.log(get(obj, "a.b.c[3]")); // Output: undefined (index 3 is out of bounds)
+console.log(get(obj, "a.c")); // Output: undefined (key 'c' does not exist under 'a.b')
