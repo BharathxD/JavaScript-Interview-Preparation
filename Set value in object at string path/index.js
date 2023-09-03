@@ -38,17 +38,26 @@ function helper(object, path, value) {
   return object;
 }
 
+// Define a function to set a value in an object using a path.
 function set(object, path, value) {
+  // Check for invalid input.
   if (!path || !value || path.length === 0) {
     return undefined;
   }
+
+  // Define characters to ignore in the path.
   const ignoreCases = ["[", ".", "]"];
+  // Initialize an array to store the cleaned path components.
   const convertedArray = [];
+
+  // Iterate through the characters in the path and filter out ignored characters.
   for (let i = 0; i < path.length; i++) {
     if (!ignoreCases.includes(path[i])) {
       convertedArray.push(path[i]);
     }
   }
+
+  // Call the helper function to set the value in the object.
   helper(object, path, value);
 }
 
