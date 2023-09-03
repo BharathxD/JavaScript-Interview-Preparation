@@ -61,14 +61,15 @@ function set(object, path, value) {
   helper(object, path, value);
 }
 
+// Initialize an empty object.
 const object = {};
 
+// Set values in the object using the set function.
 set(object, "a[0].b.c", 4);
-console.log(object.a[0].b.c);
-// 4
+console.log(object.a[0].b.c); // Output: 4
 
 set(object, ["x", "0", "y", "z"], 5);
-console.log(object.x[0].y.z);
-// 5
+console.log(object.x[0].y.z); // Output: 5
 
+// Print the modified object.
 console.log(object);
