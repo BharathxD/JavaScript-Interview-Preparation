@@ -34,7 +34,6 @@ function helper(object, path, value) {
     object[currentKey] = value;
   }
 
-  // Return the modified object.
   return object;
 }
 
